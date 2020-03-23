@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hidden Classics Pavilion</title>
+     <meta charset="UTF-8">
+        
+    <meta name="description" content="A dust-laden website home to the Hidden Classics Pavilion. A pavilion filled with the essence of ancient novels throughout the eras of time." />
+    <meta name="keywords" content="Hidden Classics Pavilion, Personal Website" />
+    <meta name="author" content="Ben Cheung" />
+
+
+ <link rel="shortcut icon" href="images/favicon.ico">
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.bgimg {
+  /*background-image: url('/images/bg-4.jpg');*/
+  background-color: black;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  color: white;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 25px;
+}
+
+.topleft {
+  position: absolute;
+  top: 0;
+  left: 16px;
+}
+
+.bottomleft {
+  position: absolute;
+  bottom: 0;
+  left: 16px;
+}
+
+.tab { margin-left: 40px; }
+
+.middle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+hr {
+  margin: auto;
+  width: 40%;
+}
+</style>
+<body onload = "startTime()">
+
+<div class="bgimg">
+  <div class="topleft">
+    <p>Hidden Classics Pavilion | <a href="https://discord.gg/rdyPuhs"><img src ="https://i.imgur.com/tyVEvFD.png" alt = "discord" width = 25 height = 25></a> <a href="https://github.com/MrBenC88"><img src ="https://i.imgur.com/SBbJrna.png" alt = "github" width = 25 height = 25></a></p>
+  </div>
+  <div class="middle">
+      
+    <p>Current Time</p>
+    <p id="txt"></p>
+     <hr>
+    <p>Countdown till Deadline [CPSC 210]<br>Phase 4: 21:00, Wednesday, Apr 1</p>
+    <p id="countdownclock" style="font-size:30px"></p>
+  </div>
+
+</div>
+
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("April 1, 2020 21:00:0").getTime();
+
+// Update the count down every 1 second
+var countdownfunction = setInterval(function() {
+
+  // Get todays date and time
+  var now = new Date().getTime();
+  
+  // Find the distance between now an the count down date
+  var distance = countDownDate - now;
+  
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  
+  // Output the result in an element with id="countdownclock"
+  document.getElementById("countdownclock").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+  
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(countdownfunction);
+    document.getElementById("countdownclock").innerHTML = "EXPIRED";
+  }
+}, 1000);
+
+function startTime() {
+  var today = new Date();
+  var h = today.getHours();
+  var m = today.getMinutes();
+  var s = today.getSeconds();
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('txt').innerHTML =
+  h + ":" + m + ":" + s;
+  var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+  return i;
+}
+</script>
+
+</body>
+</html>
